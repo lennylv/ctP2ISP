@@ -90,7 +90,7 @@ class MyModule(nn.Module):
                                             nn.ReLU(),
                                             nn.AvgPool1d(3,stride=1,padding=1))
         self.loc_res_encoder = nn.TransformerEncoderLayer(d_model=hidden_size,nhead=1,dim_feedforward=hidden_size*4,dropout=dropout)
-        self.loc_res_transformer = nn.TransformerEncoder(self.loc_pssm_encoder,num_layers=1)
+        self.loc_res_transformer = nn.TransformerEncoder(self.loc_res_encoder,num_layers=1)
 
         self.loc_mix_conv1 = nn.Sequential(nn.Conv1d(hidden_size*6,hidden_size*4,kernel_size=7,padding=3),
                                             nn.BatchNorm1d(hidden_size*4),
@@ -194,7 +194,7 @@ class MyModule(nn.Module):
                                             nn.ReLU(),
                                             nn.AvgPool1d(3,stride=1,padding=1))
         self.glo_res_encoder = nn.TransformerEncoderLayer(d_model=hidden_size,nhead=1,dim_feedforward=hidden_size*4,dropout=dropout)
-        self.glo_res_transformer = nn.TransformerEncoder(self.glo_pssm_encoder,num_layers=1)
+        self.glo_res_transformer = nn.TransformerEncoder(self.glo_res_encoder,num_layers=1)
 
         self.glo_mix_conv1 = nn.Sequential(nn.Conv1d(hidden_size*6,hidden_size*4,kernel_size=7,padding=3),
                                             nn.BatchNorm1d(hidden_size*4),
